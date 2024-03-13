@@ -1,4 +1,4 @@
-import { Container, ContainerProps, Link } from "@mui/material";
+import { Container, ContainerProps } from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
 
 type BaseNavigationProps = ContainerProps;
@@ -18,20 +18,19 @@ export function BaseNavigation({
         justifyContent: "space-between",
         alignItems: "center",
         px: 4,
-        py: 2,
+        py: 1,
         ...sx,
       }}
       {...rest}
     >
-      <Link
-        variant="h5"
-        component="p"
-        color="primary.main"
-        sx={{ cursor: "pointer", textDecorationLine: "none" }}
+      <img
+        src="/brand.svg"
+        height={48}
+        style={{
+          cursor: "pointer",
+        }}
         onClick={() => navigate({ to: "/" })}
-      >
-        My Logo
-      </Link>
+      />
       {children}
     </Container>
   );
