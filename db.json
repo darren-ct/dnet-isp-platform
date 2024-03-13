@@ -1,17 +1,6 @@
 {
     "users" : [
-        {
-            "id" : "1",
-            "username" : "darren_christian",
-            "full_name": "Darren Christian",
-            "password" : "123456789",
-            "phoneNumber" : "082228883030"
-        }
     ],
-    "my-balance" : {
-        "credit_balance" : 1780,
-        "internet_quota" : 30
-    },
     "internet-packages" : [
         {
             "id" : "1",
@@ -42,13 +31,6 @@
             "category_name" : "Internet Sakti",
             "name" : "5 GB | 7 Hari",
             "price" : 17000
-        }
-    ],
-    "my-transactions" : [
-        {
-            "id": "1",
-            "name" : "5 GB | 7 Hari",
-            "total" : 17000
         }
     ]
 }

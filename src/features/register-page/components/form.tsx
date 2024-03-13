@@ -8,20 +8,22 @@ import {
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import { Controller, useForm } from "react-hook-form";
-import { LoginSchema, loginSchema } from "../validators";
+import { RegisterSchema, registerSchema } from "../validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
 
-export function LoginForm(): JSX.Element {
-  const form = useForm<LoginSchema>({ resolver: zodResolver(loginSchema) });
+export function RegisterForm(): JSX.Element {
+  const form = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
+  });
   const { control, handleSubmit } = form;
 
-  const onSubmit = useCallback((data: LoginSchema) => {
+  const onSubmit = useCallback((data: RegisterSchema) => {
     console.log({ data });
   }, []);
 
   return (
-    <form style={{ flex: 1, maxWidth: 540 }} onSubmit={handleSubmit(onSubmit)}>
+    <form style={{ flex: 1, maxWidth: 600 }} onSubmit={handleSubmit(onSubmit)}>
       <Stack
         spacing={2.5}
         px={4}
@@ -31,11 +33,10 @@ export function LoginForm(): JSX.Element {
         bgcolor="white"
       >
         <Typography component="h1" variant="h4">
-          Login
+          Register
         </Typography>
         <Typography variant="body2" color="GrayText">
-          To access and use our platform, please login with your email and
-          password
+          To access and use our platform, please register first
         </Typography>
         <FormControl>
           <FormLabel sx={{ mb: 0.5 }}>Email</FormLabel>
@@ -70,11 +71,44 @@ export function LoginForm(): JSX.Element {
             )}
           />
         </FormControl>
+        <FormControl>
+          <FormLabel sx={{ mb: 0.5 }}>Full Name</FormLabel>
+          <Controller
+            control={control}
+            name="fullName"
+            render={({ field, fieldState }) => (
+              <TextField
+                error={!!fieldState.error?.message}
+                helperText={fieldState.error?.message}
+                size="small"
+                variant="filled"
+                {...field}
+              />
+            )}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel sx={{ mb: 0.5 }}>Phone Number</FormLabel>
+          <Controller
+            control={control}
+            name="phoneNumber"
+            render={({ field, fieldState }) => (
+              <TextField
+                type="tel"
+                error={!!fieldState.error?.message}
+                helperText={fieldState.error?.message}
+                size="small"
+                variant="filled"
+                {...field}
+              />
+            )}
+          />
+        </FormControl>
         <Button type="submit" size="large" variant="contained">
-          Login Now
+          Register Now
         </Button>
         <Typography variant="caption">
-          Are you new? <Link href="/register">Create an account</Link>
+          Already have an account? <Link href="/login">Login here</Link>
         </Typography>
       </Stack>
     </form>

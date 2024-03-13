@@ -1,4 +1,5 @@
-import { Container, Typography, ContainerProps } from "@mui/material";
+import { Container, ContainerProps, Link } from "@mui/material";
+import { useNavigate } from "@tanstack/react-router";
 
 type BaseNavigationProps = ContainerProps;
 
@@ -7,6 +8,8 @@ export function BaseNavigation({
   sx,
   ...rest
 }: BaseNavigationProps): JSX.Element {
+  const navigate = useNavigate();
+
   return (
     <Container
       sx={{
@@ -20,9 +23,15 @@ export function BaseNavigation({
       }}
       {...rest}
     >
-      <Typography variant="h4" component="p" color="primary.main">
+      <Link
+        variant="h5"
+        component="p"
+        color="primary.main"
+        sx={{ cursor: "pointer", textDecorationLine: "none" }}
+        onClick={() => navigate({ to: "/" })}
+      >
         My Logo
-      </Typography>
+      </Link>
       {children}
     </Container>
   );
