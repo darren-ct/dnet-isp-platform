@@ -1,13 +1,5 @@
 {
-    "users" : [
-        {
-            "id" : "1",
-            "username" : "darren_christian",
-            "full_name": "Darren Christian",
-            "password" : "123456789",
-            "phoneNumber" : "082228883030"
-        }
-    ],
+    "users" : [],
     "my-balance" : {
         "credit_balance" : 1780,
         "internet_quota" : 30
