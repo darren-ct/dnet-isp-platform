@@ -10,7 +10,7 @@ function DashboardLayout() {
   return (
     <Stack direction="column" width="100wh" height="100vh">
       <DashboardNavigation />
-      <Container sx={{ flex: 1, px: 4, py: 2 }}>
+      <Container sx={{ flex: 1, px: 4, pt: 14, pb: 4 }}>
         <Outlet />
       </Container>
     </Stack>
