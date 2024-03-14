@@ -23,7 +23,7 @@ export function ServicePackageCard({
     >
       <Stack
         position="relative"
-        flexDirection="row"
+        direction="row"
         justifyContent="center"
         alignItems="center"
         gap={1}
@@ -48,7 +48,7 @@ export function ServicePackageCard({
       </Stack>
 
       <Box px={2} py={3} bgcolor="white">
-        <Stack direction="column" gap={2}>
+        <Stack gap={2}>
           <Typography variant="caption">Spesifikasi:</Typography>
           <Stack direction="row" alignItems="center" gap={1}>
             <CheckCircledIcon width={18} height={18} color="#1976d2" />

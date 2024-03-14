@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_dashboard/")({
 
 function HomePage(): JSX.Element {
   return (
-    <Stack flex={1} flexDirection="column" gap={8}>
+    <Stack flex={1} gap={8}>
       <Box bgcolor="rgba(0,0,0,.1)" width="100%" height={360} />
       <HomeServicesOverview />
     </Stack>
