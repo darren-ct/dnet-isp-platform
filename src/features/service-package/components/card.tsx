@@ -1,5 +1,4 @@
 import { InternetServiceEntity } from "@/services/internet-services";
-import { WifiIcon } from "../../../assets/icons";
 import {
   Box,
   Button,
@@ -9,18 +8,22 @@ import {
   Typography,
 } from "@mui/material";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
-import { internetServiceDurationLabel } from "..";
+import { internetServiceDurationLabel, internetServiceTypeIcon } from "..";
+import { applyEllipsis } from "../../../utils";
 
 type ServicePackageCardProps = InternetServiceEntity & StackProps;
 
 export function ServicePackageCard({
   name,
+  type,
   isBestSeller,
   spesifications,
   price,
   duration,
   ...rest
 }: ServicePackageCardProps): JSX.Element {
+  const ServiceTypeIcon = internetServiceTypeIcon[type];
+
   return (
     <Stack
       border="1px solid rgba(0, 0, 0, .1)"
@@ -39,8 +42,10 @@ export function ServicePackageCard({
         px={2}
         py={8}
       >
-        <WifiIcon />
-        <Typography fontWeight={500}>{name}</Typography>
+        <ServiceTypeIcon />
+        <Typography fontWeight={500} sx={{ ...applyEllipsis() }}>
+          {name}
+        </Typography>
         {isBestSeller && (
           <Chip
             label="Best-seller"

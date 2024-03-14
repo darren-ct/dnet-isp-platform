@@ -1,5 +1,8 @@
 import { Footer } from "../components/layout/footer";
-import { DashboardNavigation } from "../features/dashboard/components";
+import {
+  CustomerServiceButton,
+  DashboardNavigation,
+} from "../features/dashboard/components";
 import { Container, Stack } from "@mui/material";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
@@ -15,6 +18,7 @@ function DashboardLayout() {
         <Outlet />
       </Container>
       <Footer />
+      <CustomerServiceButton />
     </Stack>
   );
 }

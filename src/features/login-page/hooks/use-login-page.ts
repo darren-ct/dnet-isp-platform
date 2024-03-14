@@ -1,4 +1,4 @@
-import { useCurrentBreakpoint } from "../../../hooks/use-current-breakpoint";
+import { useCurrentBreakpoint } from "../../../hooks";
 
 export function useLoginPage() {
   const { currentBreakpoint } = useCurrentBreakpoint();
