@@ -3,8 +3,12 @@ import { ServicePackageCard } from "../../../features/service-package";
 import { Chip, Grid, Stack, TextField } from "@mui/material";
 
 export function ServicesDisplay(): JSX.Element {
-  const { serviceCategories, selectedCategory, setSelectedCategory } =
-    useServicesDisplay();
+  const {
+    servicePackages,
+    serviceCategories,
+    selectedCategory,
+    setSelectedCategory,
+  } = useServicesDisplay();
 
   return (
     <Stack gap={4}>
@@ -36,24 +40,19 @@ export function ServicesDisplay(): JSX.Element {
       </Stack>
 
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
+        {servicePackages?.map((servicePackage) => (
+          <Grid
+            key={servicePackage.id}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={4}
+            xl={4}
+          >
+            <ServicePackageCard {...servicePackage} />
+          </Grid>
+        ))}
       </Grid>
     </Stack>
   );

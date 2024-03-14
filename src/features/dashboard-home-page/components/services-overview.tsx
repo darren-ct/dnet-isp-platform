@@ -6,8 +6,7 @@ import { useNavigate } from "@tanstack/react-router";
 
 export function HomeServicesOverview(): JSX.Element {
   const navigate = useNavigate();
-  const { data } = useFindInternetService();
-  console.log({ data });
+  const { data: servicePackages } = useFindInternetService();
 
   return (
     <Box>
@@ -41,24 +40,19 @@ export function HomeServicesOverview(): JSX.Element {
         </Button>
       </Stack>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
-          <ServicePackageCard />
-        </Grid>
+        {servicePackages?.map((servicePackage) => (
+          <Grid
+            key={servicePackage.id}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={4}
+            xl={4}
+          >
+            <ServicePackageCard {...servicePackage} />
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );

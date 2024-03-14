@@ -6,7 +6,7 @@
             "id" : "1",
             "name" : "Paket Wifi Unlimited | 31 Hari",
             "type" : "WIFI",
-            "is_best_seller" : true,
+            "isBestSeller" : true,
             "spesifications" : ["Hanya berlaku sampai tanggal X", "Kecepatan 30 Mbps", "Kuota Unlimited"],
             "price" : 340000,
             "duration" : "MONTHLY"

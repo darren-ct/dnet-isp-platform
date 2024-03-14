@@ -1,9 +1,20 @@
+export enum InternetServiceTypeEnum {
+  "WIFI",
+  "DATA",
+}
+
+export enum InternetServiceDurationEnum {
+  "DAILY",
+  "WEEKLY",
+  "MONTHLY",
+}
+
 export interface InternetServiceEntity {
   id: string;
   name: string;
-  type: "WIFI" | "DATA";
-  is_best_seller: true;
+  type: InternetServiceTypeEnum;
+  isBestSeller: true;
   spesifications: string[];
   price: number;
-  duration: "DAILY" | "WEEKLY" | "MONTHLY";
+  duration: InternetServiceDurationEnum;
 }

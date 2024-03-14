@@ -1,3 +1,4 @@
+import { InternetServiceEntity } from "@/services/internet-services";
 import { WifiIcon } from "../../../assets/icons";
 import {
   Box,
@@ -9,9 +10,14 @@ import {
 } from "@mui/material";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 
-type ServicePackageCardProps = StackProps;
+type ServicePackageCardProps = InternetServiceEntity & StackProps;
 
 export function ServicePackageCard({
+  name,
+  isBestSeller,
+  spesifications,
+  price,
+  duration,
   ...rest
 }: ServicePackageCardProps): JSX.Element {
   return (
@@ -33,41 +39,33 @@ export function ServicePackageCard({
         py={8}
       >
         <WifiIcon />
-        <Typography fontWeight={500}>Paket 1</Typography>
-        <Chip
-          label="Best-seller"
-          sx={{
-            position: "absolute",
-            right: 16,
-            bottom: 12,
-            fontWeight: 600,
-            bgcolor: "#EFD101",
-            fontSize: 12,
-          }}
-        />
+        <Typography fontWeight={500}>{name}</Typography>
+        {isBestSeller && (
+          <Chip
+            label="Best-seller"
+            sx={{
+              position: "absolute",
+              right: 16,
+              bottom: 12,
+              fontWeight: 600,
+              bgcolor: "#EFD101",
+              fontSize: 12,
+            }}
+          />
+        )}
       </Stack>
 
       <Box px={2} py={3} bgcolor="white">
         <Stack gap={2}>
           <Typography variant="caption">Spesifikasi:</Typography>
-          <Stack direction="row" alignItems="center" gap={1}>
-            <CheckCircledIcon width={18} height={18} color="#1976d2" />
-            <Typography variant="caption" fontWeight={600}>
-              Promo biaya pasang menjadi Rp50.000
-            </Typography>
-          </Stack>
-          <Stack direction="row" alignItems="center" gap={1}>
-            <CheckCircledIcon width={18} height={18} color="#1976d2" />
-            <Typography variant="caption" fontWeight={600}>
-              Promo biaya pasang menjadi Rp50.000
-            </Typography>
-          </Stack>
-          <Stack direction="row" alignItems="center" gap={1}>
-            <CheckCircledIcon width={18} height={18} color="#1976d2" />
-            <Typography variant="caption" fontWeight={600}>
-              Promo biaya pasang menjadi Rp50.000
-            </Typography>
-          </Stack>
+          {spesifications.map((item, index) => (
+            <Stack key={index} direction="row" alignItems="center" gap={1}>
+              <CheckCircledIcon width={18} height={18} color="#1976d2" />
+              <Typography variant="caption" fontWeight={600}>
+                {item}
+              </Typography>
+            </Stack>
+          ))}
         </Stack>
 
         <Typography
@@ -79,7 +77,7 @@ export function ServicePackageCard({
           mt={5}
           mb={1}
         >
-          Rp 500.000,- / bulan
+          Rp {price.toLocaleString()},- / {duration}
         </Typography>
 
         <Button
