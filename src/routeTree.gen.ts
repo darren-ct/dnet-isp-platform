@@ -15,6 +15,7 @@ import { Route as DashboardImport } from './routes/_dashboard'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as DashboardIndexImport } from './routes/_dashboard/index'
 import { Route as DashboardServicesImport } from './routes/_dashboard/services'
+import { Route as DashboardMyTransactionsImport } from './routes/_dashboard/my-transactions'
 import { Route as AuthRegisterIndexImport } from './routes/_auth/register/index'
 import { Route as AuthLoginIndexImport } from './routes/_auth/login/index'
 
@@ -40,6 +41,11 @@ const DashboardServicesRoute = DashboardServicesImport.update({
   getParentRoute: () => DashboardRoute,
 } as any)
 
+const DashboardMyTransactionsRoute = DashboardMyTransactionsImport.update({
+  path: '/my-transactions',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
 const AuthRegisterIndexRoute = AuthRegisterIndexImport.update({
   path: '/register/',
   getParentRoute: () => AuthRoute,
@@ -61,6 +67,10 @@ declare module '@tanstack/react-router' {
     '/_dashboard': {
       preLoaderRoute: typeof DashboardImport
       parentRoute: typeof rootRoute
+    }
+    '/_dashboard/my-transactions': {
+      preLoaderRoute: typeof DashboardMyTransactionsImport
+      parentRoute: typeof DashboardImport
     }
     '/_dashboard/services': {
       preLoaderRoute: typeof DashboardServicesImport
@@ -85,7 +95,11 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   AuthRoute.addChildren([AuthLoginIndexRoute, AuthRegisterIndexRoute]),
-  DashboardRoute.addChildren([DashboardServicesRoute, DashboardIndexRoute]),
+  DashboardRoute.addChildren([
+    DashboardMyTransactionsRoute,
+    DashboardServicesRoute,
+    DashboardIndexRoute,
+  ]),
 ])
 
 /* prettier-ignore-end */
