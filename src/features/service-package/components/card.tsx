@@ -1,4 +1,4 @@
-import { InternetServiceEntity } from "@/services/internet-services";
+import { InternetServiceEntity } from "../../../services/internet-services";
 import {
   Box,
   Button,
@@ -10,10 +10,19 @@ import {
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { internetServiceDurationLabel, internetServiceTypeIcon } from "..";
 import { applyEllipsis } from "../../../utils";
+import { useQueryClient } from "@tanstack/react-query";
+import { useCallback, useMemo } from "react";
+import { useCreateMyTransaction } from "../../../services/my-transactions/hooks/use-create-my-transaction";
+import {
+  MyTransactionStatusEnum,
+  MyTransactionsServicesQueryKeyFactory,
+} from "../../../services/my-transactions";
+import { useToast } from "../../../hooks";
 
 type ServicePackageCardProps = InternetServiceEntity & StackProps;
 
 export function ServicePackageCard({
+  id,
   name,
   type,
   isBestSeller,
@@ -22,7 +31,28 @@ export function ServicePackageCard({
   duration,
   ...rest
 }: ServicePackageCardProps): JSX.Element {
+  const queryClient = useQueryClient();
+  const { mutateAsync, isPending } = useCreateMyTransaction();
+  const { toast } = useToast();
+
+  const queryKeyFactory = useMemo(
+    () => new MyTransactionsServicesQueryKeyFactory(),
+    []
+  );
+
   const ServiceTypeIcon = internetServiceTypeIcon[type];
+
+  const onPurchase = useCallback(async () => {
+    await mutateAsync({
+      packageName: name,
+      price,
+      status: MyTransactionStatusEnum.PENDING,
+      userId: "",
+      internetServiceId: id,
+    });
+    await queryClient.invalidateQueries({ queryKey: queryKeyFactory.all() });
+    toast("Package purchased!");
+  }, [id, mutateAsync, name, price, queryClient, queryKeyFactory, toast]);
 
   return (
     <Stack
@@ -90,12 +120,14 @@ export function ServicePackageCard({
         </Typography>
 
         <Button
+          disabled={isPending}
           fullWidth
           variant="contained"
           sx={{
             textTransform: "none",
             borderRadius: 3,
           }}
+          onClick={onPurchase}
         >
           Pilih Paket
         </Button>

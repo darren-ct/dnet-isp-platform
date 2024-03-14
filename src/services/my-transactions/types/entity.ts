@@ -1,8 +1,8 @@
 export enum MyTransactionStatusEnum {
-  "PENDING",
-  "FAILED",
-  "SUCCESS",
-  "EXPIRED",
+  PENDING = "PENDING",
+  FAILED = "FAILED",
+  SUCCESS = "SUCCESS",
+  EXPIRED = "EXPIRED",
 }
 
 export interface MyTransactionEntity {
@@ -10,7 +10,7 @@ export interface MyTransactionEntity {
   packageName: string;
   price: number;
   status: MyTransactionStatusEnum;
-  updatedAt: string;
+  createdAt: string;
   userId: string;
   internetServiceId: string;
 }

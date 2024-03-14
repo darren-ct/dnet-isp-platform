@@ -8,41 +8,39 @@ import {
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import { Controller, useForm } from "react-hook-form";
-import { RegisterSchema, registerSchema } from "../validators";
+import { LoginSchema, loginSchema } from "../validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
-import { useRegister } from "../../../services/auth";
+import { useLogin } from "../../../services/auth";
 import { useToast } from "../../../hooks";
 import { useNavigate } from "@tanstack/react-router";
 
-export function RegisterForm(): JSX.Element {
+export function LoginForm(): JSX.Element {
   const navigate = useNavigate();
 
-  const { mutateAsync } = useRegister();
+  const { mutateAsync, isPending } = useLogin();
 
   const { toast } = useToast();
 
-  const form = useForm<RegisterSchema>({
-    resolver: zodResolver(registerSchema),
-  });
+  const form = useForm<LoginSchema>({ resolver: zodResolver(loginSchema) });
   const { control, handleSubmit } = form;
 
   const onSubmit = useCallback(
-    async (data: RegisterSchema) => {
+    async (data: LoginSchema) => {
       try {
         await mutateAsync(data);
-        toast("Register Successful!");
+        toast("Login Successful!");
         navigate({ to: "/" });
       } catch (err) {
-        console.error({ err });
-        toast("Register Failed!");
+        console.log({ err });
+        toast("Login Failed!");
       }
     },
-    [mutateAsync, navigate, toast]
+    [mutateAsync, toast]
   );
 
   return (
-    <form style={{ flex: 1, maxWidth: 600 }} onSubmit={handleSubmit(onSubmit)}>
+    <form style={{ flex: 1, maxWidth: 540 }} onSubmit={handleSubmit(onSubmit)}>
       <Stack
         spacing={2.5}
         px={4}
@@ -52,10 +50,11 @@ export function RegisterForm(): JSX.Element {
         bgcolor="white"
       >
         <Typography component="h1" variant="h4">
-          Register
+          Login
         </Typography>
         <Typography variant="body2" color="GrayText">
-          To access and use our platform, please register first
+          To access and use our platform, please login with your email and
+          password
         </Typography>
         <FormControl>
           <FormLabel sx={{ mb: 0.5 }}>Email</FormLabel>
@@ -90,44 +89,16 @@ export function RegisterForm(): JSX.Element {
             )}
           />
         </FormControl>
-        <FormControl>
-          <FormLabel sx={{ mb: 0.5 }}>Full Name</FormLabel>
-          <Controller
-            control={control}
-            name="data.fullName"
-            render={({ field, fieldState }) => (
-              <TextField
-                error={!!fieldState.error?.message}
-                helperText={fieldState.error?.message}
-                size="small"
-                variant="filled"
-                {...field}
-              />
-            )}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel sx={{ mb: 0.5 }}>Phone Number</FormLabel>
-          <Controller
-            control={control}
-            name="data.phoneNumber"
-            render={({ field, fieldState }) => (
-              <TextField
-                type="tel"
-                error={!!fieldState.error?.message}
-                helperText={fieldState.error?.message}
-                size="small"
-                variant="filled"
-                {...field}
-              />
-            )}
-          />
-        </FormControl>
-        <Button type="submit" size="large" variant="contained">
-          Register Now
+        <Button
+          disabled={isPending}
+          type="submit"
+          size="large"
+          variant="contained"
+        >
+          Login Now
         </Button>
         <Typography variant="caption">
-          Already have an account? <Link href="/login">Login here</Link>
+          Are you new? <Link href="/register">Create an account</Link>
         </Typography>
       </Stack>
     </form>

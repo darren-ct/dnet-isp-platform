@@ -1,7 +1,7 @@
 import { QueryKeyFactory } from "../../../services/shared/query-key-factory";
 
-export class InternetServicesQueryKeyFactory extends QueryKeyFactory {
+export class UserServicesQueryKeyFactory extends QueryKeyFactory {
   constructor() {
-    super("internet-packages");
+    super("users");
   }
 }

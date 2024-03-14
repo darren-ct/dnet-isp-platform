@@ -1,3 +1,4 @@
+import { useFindMyTransaction } from "../../../services/my-transactions";
 import {
   Table,
   TableHead,
@@ -14,13 +15,18 @@ import {
   Typography,
   IconButton,
   TablePagination,
+  Skeleton,
+  Chip,
 } from "@mui/material";
 import { DownloadIcon, EyeOpenIcon } from "@radix-ui/react-icons";
+import dayjs from "dayjs";
 import { useMemo } from "react";
 
 export function MyTransactionsTable(): JSX.Element {
+  const { data: myTransactions, isFetching } = useFindMyTransaction();
+
   const columns = useMemo(() => {
-    return ["Package Name", "Price", "Status", "Updated At", "Invoice"];
+    return ["Package Name", "Price", "Status", "Created At", "Invoice"];
   }, []);
 
   return (
@@ -65,33 +71,49 @@ export function MyTransactionsTable(): JSX.Element {
         />
       </Stack>
 
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              {columns.map((item, index) => (
-                <TableCell key={index}>{item}</TableCell>
+      {isFetching && <Skeleton variant="rectangular" height={400} />}
+
+      {!isFetching && (
+        <TableContainer component={Paper} sx={{ maxHeight: 600 }}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                {columns.map((item, index) => (
+                  <TableCell key={index}>{item}</TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {myTransactions.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>{item.packageName}</TableCell>
+                  <TableCell>Rp {item.price.toLocaleString()},-</TableCell>
+                  <TableCell>
+                    <Chip
+                      label={item.status}
+                      color="warning"
+                      sx={{
+                        fontSize: 10,
+                      }}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    {dayjs(item.createdAt).format("dddd, D MMM YYYY")}
+                  </TableCell>
+                  <TableCell>
+                    <IconButton color="primary">
+                      <DownloadIcon width={20} height={20} />
+                    </IconButton>
+                    <IconButton color="primary">
+                      <EyeOpenIcon width={20} height={20} />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
               ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>Paket 1</TableCell>
-              <TableCell>Rp 500.000</TableCell>
-              <TableCell>Sukses</TableCell>
-              <TableCell>Wed, 2 June 2023</TableCell>
-              <TableCell>
-                <IconButton color="primary">
-                  <DownloadIcon width={20} height={20} />
-                </IconButton>
-                <IconButton color="primary">
-                  <EyeOpenIcon width={20} height={20} />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
 
       <TablePagination
         rowsPerPageOptions={[]}

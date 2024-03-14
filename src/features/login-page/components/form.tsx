@@ -11,14 +11,33 @@ import { Controller, useForm } from "react-hook-form";
 import { LoginSchema, loginSchema } from "../validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback } from "react";
+import { useLogin } from "../../../services/auth";
+import { useToast } from "../../../hooks";
+import { useNavigate } from "@tanstack/react-router";
 
 export function LoginForm(): JSX.Element {
+  const navigate = useNavigate();
+
+  const { mutateAsync, isPending } = useLogin();
+
+  const { toast } = useToast();
+
   const form = useForm<LoginSchema>({ resolver: zodResolver(loginSchema) });
   const { control, handleSubmit } = form;
 
-  const onSubmit = useCallback((data: LoginSchema) => {
-    console.log({ data });
-  }, []);
+  const onSubmit = useCallback(
+    async (data: LoginSchema) => {
+      try {
+        await mutateAsync(data);
+        toast("Login Successful!");
+        navigate({ to: "/" });
+      } catch (err) {
+        console.error({ err });
+        toast("Login Failed!");
+      }
+    },
+    [mutateAsync, navigate, toast]
+  );
 
   return (
     <form style={{ flex: 1, maxWidth: 540 }} onSubmit={handleSubmit(onSubmit)}>
@@ -70,7 +89,12 @@ export function LoginForm(): JSX.Element {
             )}
           />
         </FormControl>
-        <Button type="submit" size="large" variant="contained">
+        <Button
+          disabled={isPending}
+          type="submit"
+          size="large"
+          variant="contained"
+        >
           Login Now
         </Button>
         <Typography variant="caption">

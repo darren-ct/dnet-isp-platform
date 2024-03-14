@@ -5,6 +5,7 @@ import {
 } from "../features/dashboard/components";
 import { Container, Stack } from "@mui/material";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
+// import Cookies from "js-cookie";
 
 export const Route = createFileRoute("/_dashboard")({
   component: DashboardLayout,
