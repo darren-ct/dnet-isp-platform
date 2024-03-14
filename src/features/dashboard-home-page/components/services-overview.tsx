@@ -1,3 +1,4 @@
+import { useFindInternetService } from "../../../services/internet-services";
 import { ServicePackageCard } from "../../../features/service-package";
 import { Box, Typography, Stack, Button, Grid } from "@mui/material";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
@@ -5,6 +6,8 @@ import { useNavigate } from "@tanstack/react-router";
 
 export function HomeServicesOverview(): JSX.Element {
   const navigate = useNavigate();
+  const { data } = useFindInternetService();
+  console.log({ data });
 
   return (
     <Box>

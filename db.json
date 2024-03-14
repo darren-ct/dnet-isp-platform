@@ -4,33 +4,12 @@
     "internet-packages" : [
         {
             "id" : "1",
-            "category_name" : "Internet Sakti",
-            "name" : "5 GB | 7 Hari",
-            "price" : 17000
-        },
-        {
-            "id" : "2",
-            "category_name" : "Internet Sakti",
-            "name" : "5 GB | 7 Hari",
-            "price" : 17000
-        },
-        {
-            "id" : "3",
-            "category_name" : "Internet Sakti",
-            "name" : "5 GB | 7 Hari",
-            "price" : 17000
-        },
-        {
-            "id" : "4",
-            "category_name" : "Internet Sakti",
-            "name" : "5 GB | 7 Hari",
-            "price" : 17000
-        },
-        {
-            "id" : "5",
-            "category_name" : "Internet Sakti",
-            "name" : "5 GB | 7 Hari",
-            "price" : 17000
+            "name" : "Paket Wifi Unlimited | 31 Hari",
+            "type" : "WIFI",
+            "is_best_seller" : true,
+            "spesifications" : ["Hanya berlaku sampai tanggal X", "Kecepatan 30 Mbps", "Kuota Unlimited"],
+            "price" : 340000,
+            "duration" : "MONTHLY"
         }
     ]
 }

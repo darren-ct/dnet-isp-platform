@@ -32,8 +32,46 @@ export function Footer(): JSX.Element {
   return (
     <Box bgcolor="primary.dark">
       <Container sx={{ px: 4, py: 1 }}>
-        <Stack direction="row" justifyContent="space-between" gap={2} py={6}>
-          <Stack gap={2}>
+        <Stack
+          flexWrap="wrap"
+          py={6}
+          sx={{
+            flexDirection: {
+              xs: "column",
+              sm: "row",
+              md: "row",
+              lg: "row",
+              xl: "row",
+            },
+            justifyContent: {
+              xs: "center",
+              sm: "center",
+              md: "space-between",
+              lg: "space-between",
+              xl: "space-between",
+            },
+            alignItems: {
+              xs: "center",
+              sm: "start",
+              md: "start",
+              lg: "start",
+              xl: "start",
+            },
+            gap: 6,
+          }}
+        >
+          <Stack
+            gap={2}
+            sx={{
+              alignItems: {
+                xs: "center",
+                sm: "start",
+                md: "start",
+                lg: "start",
+                xl: "start",
+              },
+            }}
+          >
             <Typography fontWeight={500} color="white" mb={1}>
               Sitemap
             </Typography>
@@ -48,7 +86,18 @@ export function Footer(): JSX.Element {
             ))}
           </Stack>
 
-          <Stack gap={2}>
+          <Stack
+            gap={2}
+            sx={{
+              alignItems: {
+                xs: "center",
+                sm: "start",
+                md: "start",
+                lg: "start",
+                xl: "start",
+              },
+            }}
+          >
             <Typography fontWeight={500} color="white" mb={1}>
               Others
             </Typography>
