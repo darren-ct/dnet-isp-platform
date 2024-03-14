@@ -15,7 +15,12 @@ export function HomeServicesOverview(): JSX.Element {
         mb={4}
       >
         <Stack alignItems="start">
-          <Typography component="h1" variant="h5" textAlign="center">
+          <Typography
+            component="h1"
+            variant="h5"
+            fontWeight={500}
+            textAlign="center"
+          >
             Our Services
           </Typography>
           <Typography variant="body2">

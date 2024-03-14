@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_dashboard")({
 
 function DashboardLayout() {
   return (
-    <Stack direction="column" width="100wh" height="100vh">
+    <Stack width="100wh" height="100vh">
       <DashboardNavigation />
       <Container sx={{ flex: 1, px: 4, pt: 14, pb: 4 }}>
         <Outlet />
