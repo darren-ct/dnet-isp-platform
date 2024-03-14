@@ -1,3 +1,4 @@
+import { Footer } from "../components/layout/footer";
 import { DashboardNavigation } from "../features/dashboard/components";
 import { Container, Stack } from "@mui/material";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
@@ -13,6 +14,7 @@ function DashboardLayout() {
       <Container sx={{ flex: 1, px: 4, pt: 14, pb: 4 }}>
         <Outlet />
       </Container>
+      <Footer />
     </Stack>
   );
 }
