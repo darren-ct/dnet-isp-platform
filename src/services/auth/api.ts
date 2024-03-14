@@ -1,5 +1,5 @@
 import { AuthEntity, LoginDto, RegisterDto, UserEntity } from ".";
-import { api, authApi } from "../../lib";
+import { authApi } from "../../lib";
 
 export class AuthServicesApi {
   async register(dto: RegisterDto) {
@@ -16,7 +16,7 @@ export class AuthServicesApi {
   }
 
   async getUser() {
-    const data = await api.get<UserEntity>("/user");
+    const data = await authApi.get<UserEntity>("/user");
     return data.data;
   }
 

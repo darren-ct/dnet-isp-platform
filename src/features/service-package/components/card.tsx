@@ -8,51 +8,20 @@ import {
   Typography,
 } from "@mui/material";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
-import { internetServiceDurationLabel, internetServiceTypeIcon } from "..";
+import { internetServiceDurationLabel } from "..";
 import { applyEllipsis } from "../../../utils";
-import { useQueryClient } from "@tanstack/react-query";
-import { useCallback, useMemo } from "react";
-import { useCreateMyTransaction } from "../../../services/my-transactions/hooks/use-create-my-transaction";
-import {
-  MyTransactionStatusEnum,
-  MyTransactionsServicesQueryKeyFactory,
-} from "../../../services/my-transactions";
-import { useToast } from "../../../hooks";
+import { useServicePackageCard } from "../hooks";
 
-type ServicePackageCardProps = InternetServiceEntity & StackProps;
+export type ServicePackageCardProps = InternetServiceEntity & StackProps;
 
-export function ServicePackageCard({
-  id,
-  name,
-  type,
-  isBestSeller,
-  spesifications,
-  price,
-  duration,
-  ...rest
-}: ServicePackageCardProps): JSX.Element {
-  const queryClient = useQueryClient();
-  const { mutateAsync, isPending } = useCreateMyTransaction();
-  const { toast } = useToast();
+export function ServicePackageCard(
+  props: ServicePackageCardProps
+): JSX.Element {
+  const { name, isBestSeller, spesifications, price, duration, ...rest } =
+    props;
 
-  const queryKeyFactory = useMemo(
-    () => new MyTransactionsServicesQueryKeyFactory(),
-    []
-  );
-
-  const ServiceTypeIcon = internetServiceTypeIcon[type];
-
-  const onPurchase = useCallback(async () => {
-    await mutateAsync({
-      packageName: name,
-      price,
-      status: MyTransactionStatusEnum.PENDING,
-      userId: "",
-      internetServiceId: id,
-    });
-    await queryClient.invalidateQueries({ queryKey: queryKeyFactory.all() });
-    toast("Package purchased!");
-  }, [id, mutateAsync, name, price, queryClient, queryKeyFactory, toast]);
+  const { ServiceTypeIcon, isPending, onPurchase } =
+    useServicePackageCard(props);
 
   return (
     <Stack

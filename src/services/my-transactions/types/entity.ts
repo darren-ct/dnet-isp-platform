@@ -11,6 +11,6 @@ export interface MyTransactionEntity {
   price: number;
   status: MyTransactionStatusEnum;
   createdAt: string;
-  userId: string;
+  user_id: string;
   internetServiceId: string;
 }

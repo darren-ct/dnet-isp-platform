@@ -13,8 +13,14 @@ export function ServicesDisplay(): JSX.Element {
 
   return (
     <Stack gap={4}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Stack direction="row" gap={2} alignItems="center">
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        gap={2}
+        flexWrap="wrap"
+      >
+        <Stack direction="row" gap={2} alignItems="center" flexWrap="wrap">
           {serviceCategories.map((item, index) => (
             <Chip
               key={index}
@@ -36,7 +42,7 @@ export function ServicesDisplay(): JSX.Element {
         <TextField
           size="small"
           placeholder="Search here..."
-          sx={{ flex: 1, maxWidth: "320px" }}
+          sx={{ flex: 1, maxWidth: 320, minWidth: 240 }}
         />
       </Stack>
 

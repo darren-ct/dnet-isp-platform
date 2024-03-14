@@ -2,8 +2,10 @@ import { MyTransactionEntity } from ".";
 import { api } from "../../lib";
 
 export class MyTransactionsApi {
-  async findMyTransactions() {
-    const data = await api.get<MyTransactionEntity[]>("/my_transactions");
+  async findMyTransactions(params?: string) {
+    const data = await api.get<MyTransactionEntity[]>(
+      `/my_transactions?${params}`
+    );
     return data.data;
   }
 
