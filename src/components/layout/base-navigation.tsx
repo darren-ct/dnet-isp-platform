@@ -24,8 +24,8 @@ export function BaseNavigation({
       {...rest}
     >
       <img
-        src="/brand.svg"
-        height={48}
+        src="/brand.png"
+        height={24}
         style={{
           cursor: "pointer",
         }}
