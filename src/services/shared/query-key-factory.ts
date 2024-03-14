@@ -1,3 +1,5 @@
+import { QueryKey } from "@tanstack/react-query";
+
 export class QueryKeyFactory {
   private baseKey: string;
 
@@ -5,15 +7,15 @@ export class QueryKeyFactory {
     this.baseKey = baseKey;
   }
 
-  all() {
+  all(): QueryKey {
     return [...this.baseKey];
   }
 
-  lists() {
+  lists(): QueryKey {
     return [...this.all(), "lists"];
   }
 
-  details(id: string) {
+  details(id: string): QueryKey {
     return [...this.all(), "details", id];
   }
 }
