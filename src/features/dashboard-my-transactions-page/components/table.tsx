@@ -1,3 +1,4 @@
+import { useGetUser } from "../../../services/auth";
 import { useFindMyTransaction } from "../../../services/my-transactions";
 import {
   Table,
@@ -23,7 +24,10 @@ import dayjs from "dayjs";
 import { useMemo } from "react";
 
 export function MyTransactionsTable(): JSX.Element {
-  const { data: myTransactions, isFetching } = useFindMyTransaction();
+  const { data: userData } = useGetUser();
+  const { data: myTransactions, isFetching } = useFindMyTransaction(
+    userData?.id as string
+  );
 
   const columns = useMemo(() => {
     return ["Package Name", "Price", "Status", "Created At", "Invoice"];
@@ -67,7 +71,7 @@ export function MyTransactionsTable(): JSX.Element {
         <TextField
           size="small"
           placeholder="Search package name..."
-          sx={{ flex: 1, maxWidth: "320px" }}
+          sx={{ flex: 1, maxWidth: 320 }}
         />
       </Stack>
 
