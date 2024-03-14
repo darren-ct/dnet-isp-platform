@@ -1,12 +1,12 @@
 export enum InternetServiceTypeEnum {
-  "WIFI",
-  "DATA",
+  WIFI = "WIFI",
+  DATA = "DATA",
 }
 
 export enum InternetServiceDurationEnum {
-  "DAILY",
-  "WEEKLY",
-  "MONTHLY",
+  DAILY = "DAILY",
+  WEEKLY = "WEEKLY",
+  MONTHLY = "MONTHLY",
 }
 
 export interface InternetServiceEntity {

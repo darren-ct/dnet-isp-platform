@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { CheckCircledIcon } from "@radix-ui/react-icons";
+import { internetServiceDurationLabel } from "..";
 
 type ServicePackageCardProps = InternetServiceEntity & StackProps;
 
@@ -77,7 +78,10 @@ export function ServicePackageCard({
           mt={5}
           mb={1}
         >
-          Rp {price.toLocaleString()},- / {duration}
+          Rp {price.toLocaleString()},-{" "}
+          <Typography component="span" variant="caption">
+            / {internetServiceDurationLabel[duration]}{" "}
+          </Typography>
         </Typography>
 
         <Button
