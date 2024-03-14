@@ -12,11 +12,17 @@ export function HomeServicesOverview(): JSX.Element {
         direction="row"
         justifyContent="space-between"
         alignItems="center"
-        mb={2}
+        mb={4}
       >
-        <Typography component="h1" variant="h5" textAlign="center">
-          Our Services
-        </Typography>
+        <Stack alignItems="start">
+          <Typography component="h1" variant="h5" textAlign="center">
+            Our Services
+          </Typography>
+          <Typography variant="body2">
+            Choose your desired service package.
+          </Typography>
+        </Stack>
+
         <Button
           size="large"
           sx={{ textTransform: "none", fontSize: 16 }}
