@@ -30,3 +30,31 @@
 7. CREATE NEW MY TRANSACTION : ```POST /my_transactions```
 
 <h2>Application Overview</h2>
+
+<h4> 1. Register & Login Pages </h4>
+
+![Register Page](github-images/register.png)
+
+![Login Page](github-images/login.png)
+
+<h4> 2. Home Page </h4>
+
+![Home Page Part 1](github-images/home-pt.1.png)
+
+![Home Page Part 2](github-images/home-pt.2.png)
+
+![Footer](github-images/footer.png)
+
+<h4> 3. Services Page </h4>
+
+![Services Page](github-images/services.png)
+
+<h4> 4. My Transactions Page </h4>
+
+![My Transactions Page Part 1](github-images/my-transactions.png)
+
+<h5> 5. Some Responsive Proof!</h5>
+
+![Responsive home](github-images/responsive-home.png)
+
+![Sidemenu](github-images/sidemenu.png)
