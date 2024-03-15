@@ -1,30 +1,14 @@
-# React + TypeScript + Vite
+# D-Net ISP Demo Platform 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h2>Overview</h2>
 
-Currently, two official plugins are available:
+💻 Vercel Live Demo : <a href="https://dnet-isp-platform.vercel.app/">https://dnet-isp-platform.vercel.app/</a>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📁 Folder structure inspired by : <a href="https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md"> bulletproof react folder structure </a>
 
-## Expanding the ESLint configuration
+⚙️ Tools & Libraries : React+Vite, Tanstack-router, Tanstack-query + axios, Supabase for backend, etc.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+⏱️ Duration : Finished this in around 2-3 days, while working a full-time job!
 
-- Configure the top-level `parserOptions` property like this:
+<h2>Local Setup</h2>
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
