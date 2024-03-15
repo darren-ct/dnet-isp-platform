@@ -2,7 +2,7 @@
 
 <h2>Overview</h2>
 
-💻 Vercel Live Demo : <a href="https://dnet-isp-platform.vercel.app/">https://dnet-isp-platform.vercel.app/</a>
+💻 TRY OUR DEPLOYED APP HERE : <a href="https://dnet-isp-platform.vercel.app/">https://dnet-isp-platform.vercel.app/</a>
 
 📁 Folder structure inspired by : <a href="https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md"> bulletproof react folder structure </a>
 
@@ -28,3 +28,5 @@
 
 6. FIND MY TRANSACTIONS : ```GET /my_transactions?user_id=[userId]```
 7. CREATE NEW MY TRANSACTION : ```POST /my_transactions```
+
+<h2>Application Overview</h2>
