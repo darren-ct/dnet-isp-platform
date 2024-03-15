@@ -8,25 +8,28 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { BellIcon, ExitIcon } from "@radix-ui/react-icons";
+import { BellIcon, ExitIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { CartIcon } from "../../../../assets/icons";
 import { useGetUser, useLogout } from "../../../../services/auth";
 import { getInitial } from "../../../../utils";
 import Cookies from "js-cookie";
 import { useCallback, useState } from "react";
 import { useToast } from "../../../../hooks";
+import { Sidemenu } from "../../../../components/layout/sidemenu";
 
 export function DashboardNavigation(): JSX.Element {
   const { toast } = useToast();
   const { mutateAsync } = useLogout();
-
   const navigate = useNavigate();
   const { location } = useRouterState();
   const pathName = location.pathname;
 
+  // Form initial
   const { data: userData } = useGetUser();
   const fullName = userData?.user_metadata.fullName;
 
+  // States
+  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>();
   const isOpen = !!anchorEl;
 
@@ -49,7 +52,20 @@ export function DashboardNavigation(): JSX.Element {
       boxShadow="0px 2px 6px rgba(0, 0, 0, .05)"
     >
       <BaseNavigation>
-        <Stack direction="row" alignItems="center" gap={5}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          gap={5}
+          sx={{
+            display: {
+              xs: "none",
+              sm: "flex",
+              md: "flex",
+              lg: "flex",
+              xl: "flex",
+            },
+          }}
+        >
           <Link
             href="/services"
             fontFamily="sans-serif"
@@ -84,28 +100,42 @@ export function DashboardNavigation(): JSX.Element {
           </Link>
         </Stack>
 
-        <Stack direction="row" alignItems="center" gap={2}>
-          <IconButton sx={{ color: "primary.main" }}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          gap={2}
+          sx={{
+            display: {
+              xs: "none",
+              sm: "flex",
+              md: "flex",
+              lg: "flex",
+              xl: "flex",
+            },
+          }}
+        >
+          <IconButton>
             <CartIcon width={20} height={20} />
           </IconButton>
 
           <IconButton>
-            <BellIcon color="#1976d2" width={20} height={20} />
+            <BellIcon width={20} height={20} />
           </IconButton>
 
-          <Typography
-            component="div"
+          <Stack
+            justifyContent="center"
+            alignItems="center"
             bgcolor="primary.main"
-            color="white"
-            p={1}
             borderRadius="100vw"
+            width={36}
+            height={36}
             sx={{
               cursor: "pointer",
             }}
             onClick={(e) => setAnchorEl(e.currentTarget)}
           >
-            {getInitial(fullName)}
-          </Typography>
+            <Typography color="white">{getInitial(fullName)}</Typography>
+          </Stack>
 
           <Popover
             open={isOpen}
@@ -114,6 +144,10 @@ export function DashboardNavigation(): JSX.Element {
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "left",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
             }}
           >
             <Stack
@@ -131,11 +165,34 @@ export function DashboardNavigation(): JSX.Element {
               }}
               onClick={onLogout}
             >
-              <ExitIcon />
-              <Typography variant="body2">Logout</Typography>
+              <ExitIcon color="red" />
+              <Typography variant="body2" color="red">
+                Logout
+              </Typography>
             </Stack>
           </Popover>
         </Stack>
+
+        <IconButton
+          sx={{
+            display: {
+              xs: "block",
+              sm: "none",
+              md: "none",
+              lg: "none",
+              xl: "none",
+            },
+          }}
+          onClick={() => setIsDrawerOpen(true)}
+        >
+          <HamburgerMenuIcon width={20} height={20} />
+        </IconButton>
+
+        <Sidemenu
+          open={isDrawerOpen}
+          onClose={() => setIsDrawerOpen(false)}
+          onLogout={onLogout}
+        />
       </BaseNavigation>
     </Box>
   );

@@ -19,6 +19,7 @@ export function BaseNavigation({
         alignItems: "center",
         px: 4,
         py: 1,
+        minHeight: 64,
         ...sx,
       }}
       {...rest}
