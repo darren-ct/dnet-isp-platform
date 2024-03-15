@@ -12,3 +12,19 @@
 
 <h2>Local Setup</h2>
 
+1. ```git clone https://github.com/darren-ct/dnet-isp-platform.git```
+2. ```npm install```
+3. ```npm run dev```
+4. You are up and running!
+
+<h2>REST API Endpoints (supported by Supabase)</h2>
+
+1. REGISTER : ```POST /signup```
+2. LOGIN : ```POST /token?grant_type=password```
+3. LOGOUT : ```POST /logout```
+4. GET USER : ```GET /user```
+
+5. FIND ALL INTERNET PACKAGES : ```GET /internet_packages```
+
+6. FIND MY TRANSACTIONS : ```GET /my_transactions?user_id=[userId]```
+7. CREATE NEW MY TRANSACTION : ```POST /my_transactions```
